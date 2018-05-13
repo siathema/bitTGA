@@ -1,0 +1,13 @@
+.ninja_deps
+.ninja_log
+CMakeCache.txt
+CMakeFiles
+GPATH
+GRTAGS
+GTAGS
+TGAtest
+build.ninja
+cmake_install.cmake
+compile_commands.json
+libTGA_Lib.a
+rules.ninja
