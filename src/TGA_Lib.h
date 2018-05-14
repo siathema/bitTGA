@@ -28,6 +28,11 @@ namespace TGA_Lib
       u32 value;
       u8 raw[4];
     };
+    static const TGA_Color RED;
+    static const TGA_Color GREEN;
+    static const TGA_Color BLUE;
+    static const TGA_Color WHITE;
+    static const TGA_Color BLACK;
     TGA_Color() : value(0) {}
     inline TGA_Color(u8 r, u8 b, u8 g, u8 a) : r(r), b(b), g(g), a(a) {}
     inline TGA_Color(u32 value) : value(value) {}
@@ -63,6 +68,8 @@ namespace TGA_Lib
   };
 
 TGA_File* TGA_Generate_File(i32 width, i32 height);
+
+void TGA_Clear_To_Color(TGA_File* file, TGA_Color color);
 
 void TGA_Put_Pixel(TGA_File* file, i32 x, i32 y, TGA_Color color);
 

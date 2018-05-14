@@ -11,3 +11,5 @@ cmake_install.cmake
 compile_commands.json
 libTGA_Lib.a
 rules.ninja
+*#*#*
+test.tga

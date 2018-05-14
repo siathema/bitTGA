@@ -4,9 +4,9 @@
 
 namespace TGA_Lib {
   int test() {
-    TGA_File* file = TGA_Generate_File(10, 10);
+    TGA_File* file = TGA_Generate_File(100, 100);
     TGA_Color color(1.0f, 0.f, 0.f, 1.f);
-    TGA_Put_Pixel(file, 9, 9, color);
+    //    TGA_Put_Pixel(file, 9, 9, color);
     TGA_Write_To_File(file, "test.tga");
 
     printf("color: r:%d, g:%d, b:%d, a:%d\n", color.r, color.g, color.b, color.a);

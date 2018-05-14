@@ -9,6 +9,12 @@ namespace TGA_Lib
 
 #define nColorToByte(n) (n >= 1.0f ? 0xff : ( n <= 0.0f ? 0.0f : (u8)(n*0xFF)))
 
+    const TGA_Color TGA_Color::RED(1.0f, 0.0f, 0.0f, 1.0f);
+    const TGA_Color TGA_Color::BLUE(0.0f, 1.0f, 0.0f, 1.0f);
+    const TGA_Color TGA_Color::GREEN(0.0f, 0.0f, 1.0f, 1.0f);
+    const TGA_Color TGA_Color::WHITE(1.0f, 1.0f, 1.0f, 1.0f);
+    const TGA_Color TGA_Color::BLACK(0.0f, 0.0f, 0.0f, 1.0f);
+
   TGA_Color::TGA_Color(r32 r, r32 b, r32 g, r32 a) {
     this->r = nColorToByte(r);
     this->g = nColorToByte(b);
@@ -39,6 +45,13 @@ namespace TGA_Lib
     }
 
     return file;
+  }
+
+  void TGA_Clear_To_Color(TGA_File* file, TGA_Color color) {
+    i32 size = file->Header.Image_Spec_Height * file->Header.Image_Spec_Width;
+    u32* pixels = (u32*)file->data.Image_Data;
+    for(i32 pixel=0; pixel<size; pixel++)
+      pixels[pixel] = color.value;
   }
 
   void TGA_Put_Pixel(TGA_File* file, i32 x, i32 y, TGA_Color color) {
