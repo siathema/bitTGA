@@ -70,12 +70,17 @@ namespace TGA_Lib
   }
 
   void TGA_Flip_Image_Vertical(TGA_File* file) {
-    i32 numPixels = file->Header.Image_Spec_Height * file->Header.Image_Spec_Width;
+    i32 rows = file->Header.Image_Spec_Height;
+    i32 cols = file->Header.Image_Spec_Width;
+    i32 numPixels = rows * cols;
     u32* tempPixels = (u32*)malloc(sizeof(u32)*numPixels);
     u32* imagePixels = (u32*)file->data.Image_Data;
 
-    for(i32 i=0; i<numPixels; i++) {
-      tempPixels[i] = imagePixels[(numPixels-1)-i];
+    for(i32 row=0; row<rows; row++) {
+      for(i32 col=0; col<cols; col++) {
+        i32 index = (row*cols)+col;
+        tempPixels[index] = imagePixels[(rows-1)-index];
+      }
     }
     free(imagePixels);
     file->data.Image_Data = (u8*)tempPixels;
