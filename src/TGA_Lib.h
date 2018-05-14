@@ -40,7 +40,7 @@ namespace TGA_Lib
     TGA_Color(const TGA_Color& c);
   };
 
-#pragma pack(push, 1) // NOTE(matthias): Let's do some ugo stuff
+#pragma pack(push, 1n) // NOTE(matthias): Let's do some ugo stuff
   struct TGA_Header {
     u8 Id_Length;
     u8 Color_Map_Type;
@@ -72,6 +72,8 @@ TGA_File* TGA_Generate_File(i32 width, i32 height);
 void TGA_Clear_To_Color(TGA_File* file, TGA_Color color);
 
 void TGA_Put_Pixel(TGA_File* file, i32 x, i32 y, TGA_Color color);
+
+void TGA_Flip_Image_Vertical(TGA_File* file);
 
 void TGA_Write_To_File(TGA_File* file, const char* path);
 

@@ -69,6 +69,16 @@ namespace TGA_Lib
 
   }
 
+  void TGA_Flip_Image_Vertical(TGA_File* file) {
+    i32 numPixels = file->Header.Image_Spec_Height * file->Header.Image_Spec_Width;
+    u32* tempPixels = (u32*)malloc(sizeof(u32)*numPixels);
+    u32* imagePixels = (u32*)file->data.Image_Data;
+
+    for(i32 i=0; i<numPixels; i++) {
+      tempPixels[i] = imagePixels[(numpixels-1)-i];
+    }
+  }
+
   void TGA_Write_To_File(TGA_File* file, const char* path) {
     FILE* outStream = fopen(path, "w");
     if(outStream == nullptr)
