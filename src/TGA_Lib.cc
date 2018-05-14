@@ -77,6 +77,8 @@ namespace TGA_Lib
     for(i32 i=0; i<numPixels; i++) {
       tempPixels[i] = imagePixels[(numPixels-1)-i];
     }
+    free(imagePixels);
+    file->data.Image_Data = (u8*)tempPixels;
   }
 
   void TGA_Write_To_File(TGA_File* file, const char* path) {
