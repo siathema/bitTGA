@@ -75,7 +75,7 @@ namespace TGA_Lib
     u32* imagePixels = (u32*)file->data.Image_Data;
 
     for(i32 i=0; i<numPixels; i++) {
-      tempPixels[i] = imagePixels[(numpixels-1)-i];
+      tempPixels[i] = imagePixels[(numPixels-1)-i];
     }
   }
 
