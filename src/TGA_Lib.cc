@@ -79,7 +79,7 @@ namespace TGA_Lib
     for(i32 row=0; row<rows; row++) {
       for(i32 col=0; col<cols; col++) {
         i32 index = (row*cols)+col;
-        tempPixels[index] = imagePixels[(rows-1)-index];
+        tempPixels[(rows-1)-index] = imagePixels[index];
       }
     }
     free(imagePixels);
