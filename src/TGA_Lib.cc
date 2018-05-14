@@ -22,7 +22,7 @@ namespace TGA_Lib
     this->a = nColorToByte(a);
   }
 
-  TGA_Color::TGA_Color(TGA_Color& c) {
+  TGA_Color::TGA_Color(const TGA_Color& c) {
     value = c.value;
   }
 

@@ -37,7 +37,7 @@ namespace TGA_Lib
     inline TGA_Color(u8 r, u8 b, u8 g, u8 a) : r(r), b(b), g(g), a(a) {}
     inline TGA_Color(u32 value) : value(value) {}
     TGA_Color(r32 r, r32 b, r32 g, r32 a=1.0f);
-    TGA_Color(TGA_Color& c);
+    TGA_Color(const TGA_Color& c);
   };
 
 #pragma pack(push, 1) // NOTE(matthias): Let's do some ugo stuff
