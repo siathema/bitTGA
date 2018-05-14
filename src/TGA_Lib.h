@@ -40,7 +40,7 @@ namespace TGA_Lib
     TGA_Color(const TGA_Color& c);
   };
 
-#pragma pack(push, 1n) // NOTE(matthias): Let's do some ugo stuff
+#pragma pack(push, 1) // NOTE(matthias): Let's do some ugo stuff
   struct TGA_Header {
     u8 Id_Length;
     u8 Color_Map_Type;
