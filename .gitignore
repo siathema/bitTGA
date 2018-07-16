@@ -13,3 +13,4 @@ libTGA_Lib.a
 rules.ninja
 *#*#*
 test.tga
+test01.tga

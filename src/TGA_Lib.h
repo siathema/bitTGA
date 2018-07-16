@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _BIT_TGA
+#define _BIT_TGA
 
 #include <stdint.h>
 
@@ -18,9 +19,7 @@ typedef double r64;
 typedef u8 b8;
 
 
-namespace TGA_Lib
-{
-  struct TGA_Color {
+  typedef struct TGA_Color {
     union {
       struct {
         u8 b,g,r,a;
@@ -28,20 +27,10 @@ namespace TGA_Lib
       u32 value;
       u8 raw[4];
     };
-    static const TGA_Color RED;
-    static const TGA_Color GREEN;
-    static const TGA_Color BLUE;
-    static const TGA_Color WHITE;
-    static const TGA_Color BLACK;
-    TGA_Color() : value(0) {}
-    inline TGA_Color(u8 r, u8 b, u8 g, u8 a) : r(r), b(b), g(g), a(a) {}
-    inline TGA_Color(u32 value) : value(value) {}
-    TGA_Color(r32 r, r32 b, r32 g, r32 a=1.0f);
-    TGA_Color(const TGA_Color& c);
-  };
+    }TGA_Color;
 
-#pragma pack(push, 1) // NOTE(matthias): Let's do some ugo stuff
-  struct TGA_Header {
+#pragma pack(push, 1)
+  typedef struct TGA_Header {
     u8 Id_Length;
     u8 Color_Map_Type;
     u8 Image_Type;
@@ -53,28 +42,42 @@ namespace TGA_Lib
     u16 Image_Spec_Height;
     u8 Image_Spec_Pixel_Depth;
     u8 Image_Spec_Image_Desc;
-  };
+  }TGA_Header;
 #pragma pack(pop)
 
-  struct TGA_Data {
+  typedef struct TGA_Data {
     u8* Image_ID;
     u8* Color_Map_Data;
     u8* Image_Data;
-  };
+  }TGA_Data;
 
-  struct TGA_File {
+  typedef struct TGA_File {
     TGA_Header Header;
     TGA_Data data;
-  };
+  }TGA_File;
 
-TGA_File* TGA_Generate_File(i32 width, i32 height);
+#ifdef __cplusplus
+extern "C" {
+#endif
 
-void TGA_Clear_To_Color(TGA_File* file, TGA_Color color);
+  TGA_Color TGA_Colorb( u8 r=0, u8 g=0, u8 b=0, u8 a=0);
 
-void TGA_Put_Pixel(TGA_File* file, i32 x, i32 y, TGA_Color color);
+  TGA_Color TGA_Colorf( r32 r=0, r32 g=0, r32 b=0, r32 a=0);
 
-void TGA_Flip_Image_Vertical(TGA_File* file);
+  TGA_File* TGA_File_Generate(i32 width, i32 height);
 
-void TGA_Write_To_File(TGA_File* file, const char* path);
+  void TGA_Image_Clear_To_Color(TGA_File* file, TGA_Color color);
 
+  void TGA_Put_Pixel(TGA_File* file, i32 x, i32 y, TGA_Color color);
+
+  void TGA_Image_Flip_Vertical(TGA_File* file);
+
+  void TGA_File_Write(TGA_File* file, const char* path);
+
+  void TGA_File_Destroy(TGA_File* file);
+
+#ifdef __cplusplus
 }
+#endif
+
+#endif

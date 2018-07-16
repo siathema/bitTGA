@@ -1,6 +1,14 @@
 cmake_minimum_required (VERSION 2.6)
 project(TGAlib)
 
+set(TGA_TEST TRUE)
+
+if(TGA_TEST)
+set(CMAKE_C_COMPILER /usr/bin/clang)
+    set(CMAKE_CXX_COMPILER /usr/bin/clang++)
+    set(CMAKE_CXX_FLAGS "-g -std=c++11 -fcolor-diagnostics")
+    set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+  endif()
 #unity build helper taken from https://cheind.wordpress.com/2009/12/10/reducing-compilation-time-unity-builds/
 function(enable_unity_build UB_SUFFIX SOURCE_VARIABLE_NAME)
   set(files ${${SOURCE_VARIABLE_NAME}})
@@ -18,7 +26,6 @@ function(enable_unity_build UB_SUFFIX SOURCE_VARIABLE_NAME)
   set(${SOURCE_VARIABLE_NAME} ${${SOURCE_VARIABLE_NAME}} ${unit_build_file} PARENT_SCOPE)
 endfunction(enable_unity_build)
 
-set(TGA_TEST TRUE)
 set(SOURCES
   src/TGA_Lib.cc )
 
