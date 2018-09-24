@@ -1,19 +1,5 @@
 cmake_minimum_required (VERSION 2.6)
-project(TGAlib)
-
-if(UNIX AND NOT APPLE)
-        set(LINUX TRUE)
-endif()
-
-if(LINUX)
-    set(CMAKE_C_COMPILER /usr/bin/clang)
-    set(CMAKE_CXX_COMPILER /usr/bin/clang++)
-    set(CMAKE_CXX_FLAGS "-g -std=c++11 -fcolor-diagnostics")
-    set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-else() #MSVC
-	set(CMAKE_CXX_FLAGS "-DWIN32=1 -DWIN64=1 /EHsc /Zi /MP ") #/F NUM to change default stack size.
-	set(CMAKE_CXX_FLAGS_DEBUG "-DDEBUG=1 /MTd /Od")
-endif()
+#project(TGAlib)
 
 #unity build helper taken from https://cheind.wordpress.com/2009/12/10/reducing-compilation-time-unity-builds/
 function(enable_unity_build UB_SUFFIX SOURCE_VARIABLE_NAME)
@@ -32,7 +18,7 @@ function(enable_unity_build UB_SUFFIX SOURCE_VARIABLE_NAME)
   set(${SOURCE_VARIABLE_NAME} ${${SOURCE_VARIABLE_NAME}} ${unit_build_file} PARENT_SCOPE)
 endfunction(enable_unity_build)
 
-set(TGA_TEST TRUE)
+set(TGA_TEST False)
 set(SOURCES
   src/TGA_Lib.cc )
 
